@@ -1,3 +1,5 @@
+using Aspnet_Crud;
+
 // Modify as desired
 const string AllowedOrigin = "http://localhost:8080";
 
@@ -17,10 +19,10 @@ builder.Services.AddCors(opts =>
 var app = builder.Build();
 app.UseCors();
 
-// ***** ENDPOINTS *****
+// ***** MAPPINGS *****
 
-// app.MapGet("/", () => "Hello World!");
+app.MapGet("/", EmployeeList.FetchPage);
 
-// ***** END ENDPOINTS *****
+// ***** END MAPPINGS *****
 
 app.Run();
