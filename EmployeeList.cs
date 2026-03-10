@@ -15,7 +15,7 @@ public static class EmployeeList
         {
             try
             {
-                return JsonSerializer.Serialize(new FetchPageResponse(
+                return Json.Serialize(new FetchPageResponse(
                     ctx.employees
                         .Where(e => e.id > (pageNumber - 1) * pageSize)
                         .OrderBy(e => e.id)
@@ -29,7 +29,7 @@ public static class EmployeeList
                 Console.WriteLine(e.Message);
                 Console.WriteLine(e.StackTrace);
 
-                return JsonSerializer.Serialize(new FetchPageResponse([], false));
+                return Json.Serialize(new FetchPageResponse([], false));
             }
         }
     }

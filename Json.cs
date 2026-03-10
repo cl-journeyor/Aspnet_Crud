@@ -2,14 +2,13 @@ using System.Text.Json;
 
 namespace Aspnet_Crud;
 
-[Obsolete]
 public static class Json
 {
     static Json()
     {
         opts = new()
         {
-            PropertyNamingPolicy = JsonNamingPolicy.KebabCaseLower
+            PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower
         };
     }
 
