@@ -1,12 +1,10 @@
-using System.Text.Json;
-
 namespace Aspnet_Crud;
 
 public static class EmployeeList
 {
-    private record FetchPageResponse(Employee[] Employees, bool Success);
+    private record FetchPageResponse(Employee[] Employees);
 
-    public static string FetchPage(string page = "")
+    public static object FetchPage(string page = "")
     {
         int pageNumber = Validators.GetInt(page, 1);
         int pageSize = 10;
@@ -20,16 +18,14 @@ public static class EmployeeList
                         .Where(e => e.id > (pageNumber - 1) * pageSize)
                         .OrderBy(e => e.id)
                         .Take(pageSize)
-                        .ToArray(),
-                    true
+                        .ToArray()
                 ));
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 Console.WriteLine(e.StackTrace);
-
-                return Json.Serialize(new FetchPageResponse([], false));
+                return Results.InternalServerError("Unexpected error");
             }
         }
     }
