@@ -30,6 +30,9 @@ app.MapPost("/", EmployeeList.InsertEmployee)
 app.MapPut("/", EmployeeList.UpdateEmployee)
     .RequireCors(CorsPolicy);
 
+app.MapDelete("/", EmployeeList.DeleteEmployee)
+    .RequireCors(CorsPolicy);
+
 // ***** END MAPPINGS *****
 
 app.Run();

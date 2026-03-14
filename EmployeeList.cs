@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using System.Text.Json.Serialization;
 
 namespace Aspnet_Crud;
@@ -81,6 +82,24 @@ public static class EmployeeList
         using CompanyContext ctx = new();
 
         ctx.employees.Update(updated);
+
+        try
+        {
+            ctx.SaveChanges();
+
+            return Ok();
+        }
+        catch (Exception e)
+        {
+            return InternalServerError(e);
+        }
+    }
+
+    public static IResult DeleteEmployee([FromBody] Employee employee)
+    {
+        using CompanyContext ctx = new();
+
+        ctx.employees.Remove(employee);
 
         try
         {
