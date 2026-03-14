@@ -24,6 +24,9 @@ app.UseCors();
 app.MapGet("/", EmployeeList.FetchPage)
     .RequireCors(CorsPolicy);
 
+app.MapPost("/", EmployeeList.InsertEmployee)
+    .RequireCors(CorsPolicy);
+
 // ***** END MAPPINGS *****
 
 app.Run();
