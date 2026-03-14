@@ -76,7 +76,6 @@ public static class EmployeeList
         }
     }
 
-    // TEST
     public static IResult UpdateEmployee(Employee updated)
     {
         using CompanyContext ctx = new();
