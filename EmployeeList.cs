@@ -39,8 +39,8 @@ public static class EmployeeList
         {
             return Json.Serialize(new FetchPageResponse(
                 ctx.employees
-                    .Where(e => e.id > (pageNumber - 1) * pageSize)
                     .OrderBy(e => e.id)
+                    .Skip((pageNumber - 1) * pageSize)
                     .Take(pageSize)
                     .ToArray()
             ));
